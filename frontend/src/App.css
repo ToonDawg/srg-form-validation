@@ -48,3 +48,7 @@
 .error-message {
   color: red;
 }
+
+.valid {
+  border: 2px solid green;
+}

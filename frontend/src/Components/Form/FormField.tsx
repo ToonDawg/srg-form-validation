@@ -18,6 +18,11 @@ interface FormFieldsProps {
 
 
 export function FormField({ label, name, errors, touched, type = 'text' }: FormFieldsProps) {
+
+    const isInvalid = touched[name] && errors[name];
+    const isValid = touched[name] && !errors[name];
+    const inputClass = isInvalid ? 'error' : isValid ? 'valid' : '';
+
     return (
         <div style={{ margin: 10 }}>
             <label style={{ margin: 10 }} htmlFor={name}>{label}</label>
@@ -26,7 +31,7 @@ export function FormField({ label, name, errors, touched, type = 'text' }: FormF
                 id={name as string}
                 name={name as string}
                 type={type}
-                className={errors[name] && touched[name] ? 'error' : ''}
+                className={inputClass}
             />
             <ErrorMessage
                 name={name as string}

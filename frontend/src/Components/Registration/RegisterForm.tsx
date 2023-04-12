@@ -53,8 +53,8 @@ export const RegisterForm: React.FC = () => {
                         <FormField label="Date of Birth" name="dateOfBirth" type="date" errors={errors} touched={touched} />
                         <FormField label="Address" name="address" errors={errors} touched={touched} />
                         <div>
-                            <label htmlFor="state">State</label>
-                            <Field id="state" name="state" as="select" className={errors.state && touched.state ? 'error' : ''}>
+                            <label style={{ margin: 10 }} htmlFor="state">State</label>
+                            <Field id="state" name="state" as="select" className={errors.state && touched.state ? 'error' : 'valid'}>
                                 <option value="NSW">NSW</option>
                                 <option value="QLD">QLD</option>
                                 <option value="VIC">VIC</option>
