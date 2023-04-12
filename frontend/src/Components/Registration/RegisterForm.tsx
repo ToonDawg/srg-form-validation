@@ -11,19 +11,21 @@ function getMinDOB() {
     const currentDate = new Date();
     return new Date(currentDate.getFullYear() - 18, currentDate.getMonth(), currentDate.getDate());
 }
-console.log(getMinDOB())
 const validationSchema = object({
     firstName: string()
-        .required('First name required')
+        .required('First name is required and can only contain letters apostrophe, white spaces and hyphen')
         .matches(namePattern, 'First name is required and can only contain letters apostrophe, white spaces and hyphen'),
     lastName: string()
-        .required('Last name required')
+        .required('Last name is required and can only contain letters apostrophe, white spaces and hyphen ')
         .matches(namePattern, 'Last name is required and can only contain letters apostrophe, white spaces and hyphen '),
     dateOfBirth: date()
         .required('Date of birth is required and must be older than 18 years old ')
         .max(getMinDOB(), 'Date of birth is required and must be older than 18 years old '),
     state: string()
         .oneOf(VALID_STATES, 'State is required'),
+    address: string()
+        .required('Address is required'),
+
 });
 
 export const RegisterForm: React.FC = () => {
@@ -31,7 +33,7 @@ export const RegisterForm: React.FC = () => {
         firstName: '',
         lastName: '',
         dateOfBirth: new Date(),
-        state: 'Select A State',
+        state: 'NSW',
         address: ''
     };
 
@@ -42,7 +44,7 @@ export const RegisterForm: React.FC = () => {
 
     return (
         <div>
-            <h1>Registration Form</h1>
+            <h2>Registration Form</h2>
             <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
                 {({ errors, touched }) => (
                     <Form>
@@ -53,7 +55,6 @@ export const RegisterForm: React.FC = () => {
                         <div>
                             <label htmlFor="state">State</label>
                             <Field id="state" name="state" as="select" className={errors.state && touched.state ? 'error' : ''}>
-                                <option value="">Select a state</option>
                                 <option value="NSW">NSW</option>
                                 <option value="QLD">QLD</option>
                                 <option value="VIC">VIC</option>
@@ -66,7 +67,7 @@ export const RegisterForm: React.FC = () => {
                             <ErrorMessage name="state" component="div" className="error-message" />
                         </div>
 
-                        <button type="submit">Submit</button>
+                        <button style={{ margin: 10 }} type="submit">Submit</button>
 
                     </Form>
                 )}

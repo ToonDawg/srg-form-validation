@@ -5,7 +5,7 @@ export interface FormValues {
     lastName: string;
     dateOfBirth: Date;
     address: string;
-    state: 'Select A State' | 'NSW' | 'QLD' | 'VIC' | 'ACT' | 'TAS' | 'NT' | 'SA' | 'WA'
+    state: 'NSW' | 'QLD' | 'VIC' | 'ACT' | 'TAS' | 'NT' | 'SA' | 'WA'
 }
 
 interface FormFieldsProps {
@@ -19,8 +19,8 @@ interface FormFieldsProps {
 
 export function FormField({ label, name, errors, touched, type = 'text' }: FormFieldsProps) {
     return (
-        <div>
-            <label htmlFor={name}>{label}</label>
+        <div style={{ margin: 10 }}>
+            <label style={{ margin: 10 }} htmlFor={name}>{label}</label>
 
             <Field
                 id={name as string}
