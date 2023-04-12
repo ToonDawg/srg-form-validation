@@ -18,6 +18,11 @@ namespace RegistrationApi.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] Registration registrationForm)
         {
+            if (!ModelState.IsValid)
+            {
+                //Extra Form Validation for extra security task
+                return BadRequest(ModelState);
+            }
             try
             {
                 await _csvService.SaveRegistrationAsync(registrationForm);
