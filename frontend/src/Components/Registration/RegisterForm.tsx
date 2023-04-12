@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage, FormikHelpers } from 'formik';
 import { object, string, date } from 'yup';
 import { FormField, FormValues } from '../Form/FormField';
-import axios, { AxiosError } from 'axios';
+import axios from 'axios';
 
 const namePattern = /^[a-zA-Z\s'-]+$/;
 const VALID_STATES = ['NSW', 'QLD', 'VIC', 'ACT', 'TAS', 'NT', 'SA', 'WA'];
