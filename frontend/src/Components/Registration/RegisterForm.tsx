@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage, FormikHelpers } from 'formik';
 import { object, string, date } from 'yup';
 import { FormField, FormValues } from '../Form/FormField';
+import axios, { AxiosError } from 'axios';
 
 const namePattern = /^[a-zA-Z\s'-]+$/;
 const VALID_STATES = ['NSW', 'QLD', 'VIC', 'ACT', 'TAS', 'NT', 'SA', 'WA'];
@@ -29,6 +30,10 @@ const validationSchema = object({
 });
 
 export const RegisterForm: React.FC = () => {
+
+    const [successMessage, setSuccessMessage] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
+
     const initialValues: FormValues = {
         firstName: '',
         lastName: '',
@@ -37,13 +42,26 @@ export const RegisterForm: React.FC = () => {
         address: ''
     };
 
-    const onSubmit = (values: FormValues, actions: FormikHelpers<FormValues>) => {
-        console.log('Form data:', values);
+    const onSubmit = async (values: FormValues, actions: FormikHelpers<FormValues>): Promise<void> => {
+        try {
+            const response = await axios.post('https://localhost:5001/api/registration', values);
+
+            console.log('Form data saved successfully.', response.data);
+            setSuccessMessage('Registration successful!');
+            setErrorMessage('');
+        } catch (error: any) {
+            console.error('Error saving form data.', error);
+            setSuccessMessage('');
+            setErrorMessage('Registration failed. Please try again later.');
+        }
+
         actions.setSubmitting(false);
     };
 
     return (
         <div>
+            {successMessage && <div style={{ color: 'green' }}>{successMessage}</div>}
+            {errorMessage && <div style={{ color: 'red' }}>{errorMessage}</div>}
             <h2>Registration Form</h2>
             <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
                 {({ errors, touched }) => (
