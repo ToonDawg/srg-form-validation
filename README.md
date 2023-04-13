@@ -1,6 +1,6 @@
 # Technical Task Submission - Registration Form
 
-Hey there! thanks for checking out my technical task submission. As asked, I built a registration form using React for the frontend and .NET WebApi for the backend. The application allows users to submit information and it includes security measures to protect against common web security threats such as end-to-end validation and https.
+Hey there! thanks for checking out my technical task submission. As asked, I built a registration form using React for the frontend and .NET WebApi for the backend. The application allows users to submit information, which is validated on the client and server side.
 
 ## Installation
 
