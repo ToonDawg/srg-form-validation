@@ -21,4 +21,4 @@ To ensure that the form data is valid, I used Formik and Yup for form validation
 
 ## Testing
 
-This project uses the Jest testing framework along with the React Testing Library to write and run unit tests for the React components. These tests ensure that the components are working as expected, and help maintain the code quality as new features are added or existing features are updated.
+TODO: This project uses the Vitest testing framework along with the React Testing Library to write and run unit tests for the React components.
